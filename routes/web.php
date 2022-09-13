@@ -18,6 +18,7 @@ use App\Http\Controllers\FeelingController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\MultiTranslationController;
 use App\Http\Controllers\SocialController;
+use App\Http\Controllers\NewAdminController;
 //use App\Http\Controllers\BookStoreController;
 //use App\Http\Controllers\GroupCountriesController;
 //use App\Http\Controllers\MasterGroupController;
@@ -33,7 +34,7 @@ use App\Http\Controllers\SocialController;
 |
 */
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth','2fa'])->group(function () {
     Route::get('/home', function () {
         return view('dashboard');
     });
@@ -77,7 +78,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/policy',  [SettingsController::class, 'index_terms'])->name('index_terms');
     Route::get('/password',  [SettingsController::class, 'index_password'])->name('index_password');
     
-    Route::resource('reason', ReasonController::class);
+    // Route::resource('reason', ReasonController::class);
     Route::get('/reason', function () {
         return view('reason');
     });
@@ -87,7 +88,7 @@ Route::middleware(['auth'])->group(function () {
     
     Route::get('/reasonedit', [ReasonController::class, 'edit'])->name('reason.edit');
      
-    Route::resource('feeling', FeelingController::class);
+    // Route::resource('feeling', FeelingController::class);
     Route::get('/feeling', function () {
         return view('feeling');
     });
@@ -132,7 +133,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/authorsdetail/{id}/book', [AuthorbookController::class, 'index'])->name("authorsdetail.book");
     
     Route::resource('authorbook', AuthorbookController::class);
-    Route::get('/authorsdetail/{id}/quote', [QuotesController::class, 'author'])->name("authorsdetail.book");
+    Route::get('/authorsdetail/{id}/quote', [QuotesController::class, 'author'])->name("authorsdetail.quote");
     Route::get('/authorsdetail/{id}/chart', [AuthorDetailsController::class, 'chart'])->name("authorsdetail.chart");
     Route::resource('quotes', QuotesController::class);
 
@@ -148,6 +149,15 @@ Route::middleware(['auth'])->group(function () {
     //Route::get('fetchbookstore', [BookStoreController::class, 'fetchbookstore'])->name('fetchbookstore');
     //Route::get('fetchgc', [GroupCountriesController::class, 'fetchgc'])->name('fetchgc');
     //Route::get('fetchmg', [MasterGroupController::class, 'fetchmg'])->name('fetchmg');    
+
+
+
+    // ===rendra new
+    Route::get('/newadmin',  [SettingsController::class, 'index_newadmin'])->name('index_newadmin');
+    Route::post('registeradmin',  [NewAdminController::class, 'register'])->name('registeradmin');
+    // Route::get('admins',  [NewAdminController::class, 'index'])->name('admins.index');
+    Route::resource('admin', NewAdminController::class);
+
 });
 
 
@@ -156,3 +166,7 @@ Route::get('/login', function () {
 });
 Route::get('/', [LoginController::class, 'view'])->name('login');
 Route::post('/login', [LoginController::class, 'login'])->name('plogin');
+
+Route::post('/2fa', function () {
+    return redirect(URL()->previous());
+})->name('2fa')->middleware('2fa');

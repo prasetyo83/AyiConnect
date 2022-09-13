@@ -187,4 +187,20 @@ class SettingsController extends Controller
     {
         //
     }
+    public function index_newadmin()
+    {
+        //
+        // $setting = Settings::where('type','policy_terms')->first();
+        // if (!$setting)
+        // {
+        //     // dd("ass");
+        //     $arr = array('type' => 'policy_terms', 'value' => '');
+        //     $setting= json_encode($arr);
+        //     // dd($setting);
+        // }
+        // dd($setting);
+        return view('new-admin');
+    }
+
+
 }

@@ -70,7 +70,7 @@
 @endsection
 @section('script')
     <script>
-        @parent
+        
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

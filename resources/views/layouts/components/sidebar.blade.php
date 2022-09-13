@@ -1,6 +1,5 @@
 <div class="navbar-logo-left wf-section">
-    <div data-animation="over-left" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease"
-        role="banner" class="navbar-logo-left-container shadow-three w-nav">
+    <div data-animation="over-left" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navbar-logo-left-container shadow-three w-nav">
         <div class="container">
             <div class="navbar-wrapper">
                 <a href="#" class="navbar-brand w-nav-brand">
@@ -27,11 +26,14 @@
                             <a href="{{ route('authors.index') }}" class="nav-link">Authors</a>
                             <link rel="prerender" href="{{ route('authors.index') }}">
                         </li>
-
+                        
                         <li class="list-item">
                             <a href="{{ route('quotes.index') }}" class="nav-link">Quotes</a>
                             <link rel="prerender" href="{{ route('quotes.index') }}">
                         </li>
+
+                        
+
                         <li class="list-item">
                             <a href="{{ route('dailyprose.index') }}" class="nav-link">Prose</a>
                             <link rel="prerender" href="{{ route('dailyprose.index') }}">
@@ -52,10 +54,11 @@
                                 </nav>
                             </div>
                         </li>
-                     
+                        @if(Session::get('access') =='Admin')
                         <li class="list-item">
                             <a href="{{ route('user.index') }}" class="nav-link">Users</a>
                         </li>
+                        @endif
                         <li class="list-item">
                             <div data-hover="false" data-delay="0" class="nav-dropdown w-dropdown">
                                 <div class="nav-dropdown-toggle w-dropdown-toggle">
@@ -63,20 +66,19 @@
                                     <div class="text-block-12">Settings</div>
                                 </div>
                                 <nav class="nav-dropdown-list shadow-three mobile-shadow-hide w-dropdown-list">
-                                    <a href="{{ route('social.index') }}"
-                                        class="nav-dropdown-link w-dropdown-link">Social Media</a>
+                                    <a href="{{ route('social.index') }}" class="nav-dropdown-link w-dropdown-link">Social Media</a>
                                     <link rel="prerender" href="{{ route('social.index') }}">
-                                    <a href="{{ route('setting.index') }}"
-                                        class="nav-dropdown-link w-dropdown-link">System Settings</a>
+                                    <a href="{{ route('setting.index') }}" class="nav-dropdown-link w-dropdown-link">System Settings</a>
                                     <link rel="prerender" href="{{ route('setting.index') }}">
-                                    <a href="{{ route('index_terms') }}"
-                                        class="nav-dropdown-link w-dropdown-link">Privacy Policy & Terms <br>And
+                                    <a href="{{ route('index_terms') }}" class="nav-dropdown-link w-dropdown-link">Privacy Policy & Terms <br>And
                                         Condition Settings</a>
                                     <link rel="prerender" href="{{ route('index_terms') }}">
-                                    <a href="{{ route('index_password') }}"
-                                        class="nav-dropdown-link w-dropdown-link">Change Password</a>
+                                    <a href="{{ route('index_password') }}" class="nav-dropdown-link w-dropdown-link">Change Password</a>
                                     <link rel="prerender" href="{{ route('index_password') }}">
-
+                                    @if(Session::get('access') =='Admin')
+                                    <a href="{{ route('admin.index') }}" class="nav-dropdown-link w-dropdown-link">Add new Admin/ Createor</a>
+                                    <link rel="prerender" href="{{ route('admin.index') }}">
+                                    @endif
                                 </nav>
                             </div>
                         </li>

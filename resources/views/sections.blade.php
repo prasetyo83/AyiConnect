@@ -105,7 +105,15 @@
 
 
 
-                                </tr>
+                                    public function setGoogle2faSecretAttribute($value)
+    {
+         $this->attributes['google2fa_secret'] = encrypt($value);
+    }
+
+    public function getGoogle2faSecretAttribute($value)
+    {
+        return decrypt($value);
+    }  </tr>
                             </thead>
                             <tbody>
 
@@ -168,7 +176,7 @@
 @endsection
 @section('script')
     <script>
-        @parent
+        
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
