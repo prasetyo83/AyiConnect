@@ -42,8 +42,10 @@ UnRemark ip address for countries english, spain and indonesia to bypass testing
     
 2. Login with multiple subdomain
 Copy whole of ayiconnect into other path on your server
+
 a. running command main domain test
 php artisan serve --host=test.id --port=8080
+
 b. running command for second subdomain test
 php artisan serve --host=test.id --port=8089
 
